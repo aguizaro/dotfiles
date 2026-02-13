@@ -1,6 +1,7 @@
 # dotfiles
 
--tmux 
+- tmux 
   - tmux.conf
--zsh
-    - zshrc
+- zsh
+  - zshrc
+∑
