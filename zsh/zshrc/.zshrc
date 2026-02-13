@@ -1,0 +1,33 @@
+alias python='python3'
+alias pip='pip3'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$HOME/mongodb/bin:$HOME/mongosh/bin:$PATH"
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+# Added by Antigravity
+export PATH="/Users/tonyguizar/.antigravity/antigravity/bin:$PATH"
+
+# Update tmux pane title for the currently running command
+preexec() {
+  if [[ -n "$TMUX" ]]; then
+    local cmd="$1"
+    # shorten long commands for display
+    if [[ ${#cmd} -gt 40 ]]; then
+      cmd="${cmd[1,40]}..."
+    fi
+    tmux select-pane -T "$cmd"
+  fi
+}
+
+# Reset the pane title back to zsh prompt after command ends
+precmd() {
+  if [[ -n "$TMUX" ]]; then
+    tmux select-pane -T "zsh"
+  fi
+}
