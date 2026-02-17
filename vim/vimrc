@@ -1,0 +1,40 @@
+syntax on
+colorscheme slate
+set number
+" Highlight current line
+set cursorline
+
+" Enable mouse support
+set mouse=a
+
+" Indentation
+set tabstop=4        " # spaces = 1 tab
+set shiftwidth=4     " Size of an indent
+set expandtab        " Use spaces instead of tabs
+set smartindent      " Smart auto-indenting
+
+" Searching 
+set ignorecase       " Case insensitive search
+set smartcase        " Case sensitive if uppercase used
+set incsearch        " Show matches while typing
+set hlsearch         " Highlight matches
+
+" UI
+set showcmd          " Show command in bottom bar
+set showmatch        " Highlight matching bracket
+set wildmenu         " Better tab completion
+
+" Don't create backup or swap files
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Keep some context around cursor
+set scrolloff=8
+
+" Faster redraw
+set lazyredraw
+
+" Make backspace behave normally
+set backspace=indent,eol,start
+
