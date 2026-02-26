@@ -1,5 +1,7 @@
 alias python='python3'
 alias pip='pip3'
+alias dotfiles='cd ~/Desktop/Projects/dotfiles'
+alias ls='eza --icons --group-directories-first' # Use eza instead of ls for better visuals
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
