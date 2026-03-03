@@ -1,6 +1,6 @@
 # dotfiles
 
-Personal dotfiles for zsh, tmux, and vim.
+Personal dotfiles for zsh, tmux, iterm2, and vim.
 
 ## Contents
 
