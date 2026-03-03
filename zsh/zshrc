@@ -13,7 +13,7 @@ export PATH="$HOME/mongodb/bin:$HOME/mongosh/bin:$PATH"
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 # Added by Antigravity
-export PATH="/Users/tonyguizar/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
 # Update tmux pane title for the currently running command
 preexec() {
