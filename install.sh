@@ -10,6 +10,8 @@ INSTALL_ZSH=false
 INSTALL_TMUX=false
 INSTALL_VIM=false
 INSTALL_ALL=false
+EC_MODE=false
+APPEND_MODE=false
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -26,11 +28,14 @@ Options:
   --tmux       Install tmux config
   --vim        Install vim config
   --all        Install everything
+  --ec         Use the EC shared zsh config (ec_zshrc) instead of the full personal zshrc
+  --append     Append a source line to existing ~/.zshrc instead of symlinking over it (zsh only)
   --help       Show this help message
 
 Examples:
   ./install.sh --tmux --vim
   ./install.sh --all
+  ./install.sh --zsh --ec --append    # teammate-safe: keeps existing ~/.zshrc, sources EC config
 EOF
   exit 0
 }
@@ -49,6 +54,8 @@ while [[ $# -gt 0 ]]; do
     --tmux) INSTALL_TMUX=true ;;
     --vim) INSTALL_VIM=true ;;
     --all) INSTALL_ALL=true ;;
+    --ec) EC_MODE=true ;;
+    --append) APPEND_MODE=true ;;
     --help) usage ;;
     *)
       echo "Unknown option: $1"
@@ -93,8 +100,41 @@ link_file() {
 #######################################
 
 install_zsh() {
-  echo "Installing zsh config..."
-  link_file "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"
+  if $APPEND_MODE; then
+    local source_file target_name source_line
+
+    if $EC_MODE; then
+      source_file="$DOTFILES_DIR/zsh/ec_zshrc"
+      target_name="$HOME/.ec_zshrc"
+      source_line="source ~/.ec_zshrc  # EC dotfiles"
+    else
+      source_file="$DOTFILES_DIR/zsh/zshrc"
+      target_name="$HOME/.my_zshrc"
+      source_line="source ~/.my_zshrc  # EC dotfiles"
+    fi
+
+    echo "Installing zsh config (append mode)..."
+    link_file "$source_file" "$target_name"
+
+    if [[ ! -f "$HOME/.zshrc" ]]; then
+      touch "$HOME/.zshrc"
+    fi
+
+    if grep -qF "$source_line" "$HOME/.zshrc"; then
+      echo "Source line already present in ~/.zshrc, skipping."
+    else
+      echo "" >> "$HOME/.zshrc"
+      echo "$source_line" >> "$HOME/.zshrc"
+      echo "Appended '$source_line' to ~/.zshrc"
+    fi
+  else
+    echo "Installing zsh config..."
+    if $EC_MODE; then
+      link_file "$DOTFILES_DIR/zsh/ec_zshrc" "$HOME/.zshrc"
+    else
+      link_file "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
+    fi
+  fi
 }
 
 install_tmux() {

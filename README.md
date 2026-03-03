@@ -1,79 +1,67 @@
-# Dotfiles
+# dotfiles
 
-This repository contains my personal workstation configuration files.
+Personal dotfiles for zsh, tmux, and vim.
 
-## Included Configurations
+## Contents
 
-- zsh configuration  
-- tmux configuration  
-- vim configuration  
-- iTerm2 preferences (stored in `iterm2/`)  
-- Optional Homebrew package installation support  
+- `zsh/zshrc` — full personal zsh config
+- `zsh/ec_zshrc` — shared EC team zsh config (aliases, tmux pane titles)
+- `tmux/tmux.conf` — tmux config
+- `vim/vimrc` — vim config
+- `iterm2/` — iTerm2 preferences
 
-## Repository Structure
+## Structure
 
 ```
-
 dotfiles/
 ├── install.sh
 ├── zsh/
-│   └── zshrc
+│   ├── zshrc
+│   └── ec_zshrc
 ├── tmux/
 │   └── tmux.conf
 ├── vim/
 │   └── vimrc
-├── iterm2/
-│   ├── com.googlecode.iterm2.plist
-│   └── com.googlecode.iterm2.private.plist
-
-````
-
-## Installation
-
-Clone the repository:
-
-```bash
-git clone <repo-url> ~/Desktop/Projects/dotfiles
-cd ~/Desktop/Projects/dotfiles
-````
-
-Make the installer executable:
-
-```bash
-chmod +x install.sh
+└── iterm2/
+    ├── com.googlecode.iterm2.plist
+    └── com.googlecode.iterm2.private.plist
 ```
 
-Run the installer:
+## Install
 
 ```bash
+git clone <repo-url> ~/dotfiles
+cd ~/dotfiles
 ./install.sh [options]
 ```
 
-## Installation Options
+### Options
 
-| Flag     | Description                            |
-| -------- | -------------------------------------- |
-| `--zsh`  | Install zsh configuration              |
-| `--tmux` | Install tmux configuration             |
-| `--vim`  | Install vim configuration              |
-| `--brew` | Install Homebrew and required packages |
-| `--all`  | Install everything                     |
+| Flag | Description |
+|---|---|
+| `--zsh` | Install zsh config |
+| `--tmux` | Install tmux config |
+| `--vim` | Install vim config |
+| `--all` | Install everything |
+| `--ec` | Use the shared EC zsh config instead of the full personal one |
+| `--append` | Append a `source` line to your existing `~/.zshrc` instead of symlinking over it (zsh only) |
 
-Example:
+### Personal machine
 
 ```bash
 ./install.sh --all
 ```
 
-## Work Machine Setup
+Symlinks `zshrc` → `~/.zshrc`, `tmux.conf` → `~/.tmux.conf`, `vimrc` → `~/.vimrc`. Backs up any existing files before overwriting.
 
-On work machines using Oh My Zsh, custom configuration can be placed in:
+### Teammate / EC install
 
+```bash
+./install.sh --zsh --ec --append --tmux
 ```
-~/.oh-my-zsh/custom/
-```
 
-## Notes
+- Symlinks `ec_zshrc` → `~/.ec_zshrc`
+- Appends `source ~/.ec_zshrc  # EC dotfiles` to your existing `~/.zshrc` (non-destructive, idempotent)
+- Symlinks `tmux.conf` → `~/.tmux.conf`
 
-* Existing configuration files will be backed up before linking.
-* Configuration files are managed using symbolic links.
+Your existing `~/.zshrc` and oh-my-zsh setup are left intact.

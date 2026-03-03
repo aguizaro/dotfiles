@@ -1,0 +1,22 @@
+alias python='python3'
+alias pip='pip3'
+alias scp='scp -O' # legacy SCP protocol
+
+# Update tmux pane title for the currently running command
+preexec() {
+  if [[ -n "$TMUX" ]]; then
+    local cmd="$1"
+    # shorten long commands for display
+    if [[ ${#cmd} -gt 40 ]]; then
+      cmd="${cmd[1,40]}..."
+    fi
+    tmux select-pane -T "$cmd"
+  fi
+}
+
+# Reset the pane title back to zsh prompt after command ends
+precmd() {
+  if [[ -n "$TMUX" ]]; then
+    tmux select-pane -T "zsh"
+  fi
+}
