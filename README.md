@@ -29,6 +29,19 @@ dotfiles/
 
 ## Install
 
+> **Note:** These dotfiles are designed for macOS.
+
+### Prerequisites
+
+Install dependencies via Homebrew before running the install script. If you don't have Homebrew, install it first at [brew.sh](https://brew.sh).
+
+```bash
+brew install tmux
+brew install --cask iterm2
+```
+
+### Setup
+
 ```bash
 git clone <repo-url> ~/dotfiles
 cd ~/dotfiles
