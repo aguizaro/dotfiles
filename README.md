@@ -38,6 +38,7 @@ Install dependencies via Homebrew before running the install script. If you don'
 ```bash
 brew install tmux
 brew install --cask iterm2
+brew install --cask font-hack-nerd-font  # OPTIONAL (icon support)
 ```
 
 ### Setup
