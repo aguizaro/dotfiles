@@ -38,7 +38,6 @@ Install dependencies via Homebrew before running the install script. If you don'
 ```bash
 brew install tmux
 brew install --cask iterm2
-brew install --cask font-hack-nerd-font  # OPTIONAL (icon support)
 ```
 
 ### Setup
@@ -60,7 +59,7 @@ cd ~/dotfiles
 | `--ec` | Use the shared EC zsh config instead of the full personal one |
 | `--append` | Append a `source` line to your existing `~/.zshrc` instead of symlinking over it (zsh only) |
 
-### Personal machine
+## Personal machine
 
 ```bash
 ./install.sh --all
@@ -68,7 +67,7 @@ cd ~/dotfiles
 
 Symlinks `zshrc` → `~/.zshrc`, `tmux.conf` → `~/.tmux.conf`, `vimrc` → `~/.vimrc`. Backs up any existing files before overwriting.
 
-### Teammate / EC install
+## Teammate / EC install
 
 ```bash
 ./install.sh --zsh --ec --append --tmux
@@ -79,3 +78,38 @@ Symlinks `zshrc` → `~/.zshrc`, `tmux.conf` → `~/.tmux.conf`, `vimrc` → `~/
 - Symlinks `tmux.conf` → `~/.tmux.conf`
 
 Your existing `~/.zshrc` and oh-my-zsh setup are left intact.
+
+## iTerm2 Preferences
+
+### NerdFonts (optional)
+
+For icon support in tmux, install NerdFonts and apply it in iTerm2:
+
+```bash
+brew install --cask font-hack-nerd-font
+```
+
+1. Open iTerm2
+2. Go to **Settings > Profiles > Text**
+3. Set Font to `DroidSansMono Nerd Font`
+
+### Import settings
+
+### Import via iTerm2 (recommended)
+
+1. Open iTerm2
+2. Go to **Settings > General > Settings**
+3. Select **Import All Settings and Data...**
+4. Select `iterm2/iTerm2 State.itermexport` from this repo
+
+This imports profiles, colors, key bindings, and all other preferences.
+
+### Manual plist install
+
+Copy the preferences file directly to macOS's preferences directory:
+
+```bash
+cp iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
+```
+
+Then restart iTerm2 for the changes to take effect.
