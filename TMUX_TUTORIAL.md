@@ -27,7 +27,7 @@ We organize work like this:
 
 * **One tmux session per job or context**
 
-  * Example: `workspace`, `backup`, etc
+  * Example: `activations`, `troubleshooting`, `pepsi-sites`, etc
 * **One window (tab) per task/site**
 
   * Example: `THEA3`, `Lumina`, `Portico`
@@ -68,13 +68,13 @@ These are the only commands you need to type directly into your terminal (outsid
 tmux
 ```
 
-Starts a new unnamed session. If you only ever run one session, this is all you need.
+Starts a new unnamed session. *If you only ever run one session, this is all you need.*
 
 ```
-tmux new-session -s workspace
+tmux new -s activations
 ```
 
-Starts a new session named `workspace`. Use a name that describes your context.
+Starts a new session named `activations`. Use a name that describes your context.
 
 ```
 tmux attach -t workspace
@@ -140,19 +140,19 @@ This makes switching much easier.
 
 ### Switch between windows
 
-* **Next / Previous window**
+**Next / Previous window**
 
-  ```
-  Shift + ← / →
-  ```
+```
+Shift + ← / →
+```
 
-* **Jump directly by number**
+**Jump directly by number**
 
-  ```
-  Ctrl-a 1
-  Ctrl-a 2
-  Ctrl-a 3
-  ```
+```
+Ctrl-a 1
+Ctrl-a 2
+Ctrl-a 3
+```
 
 Window numbers are stable and predictable.
 
@@ -249,20 +249,29 @@ This makes it obvious when you're no longer seeing live output. Press `Esc` to r
 
 Search is extremely useful for logs and long commands.
 
-### Start search
+### Two ways to search
 
-```
-Ctrl-a s
-```
+**`Cmd + F` — terminal-wide search**
 
-Type your search term.
+Searches all visible content across every pane in the current window. Good for a quick look at what's on screen right now.
+
+**`Ctrl-s` in copy mode (orange border) — per-pane search**
+
+Searches through the full scrollback buffer (up to 200k lines). Much more powerful for digging through log output. Only searches the pane you're currently in — useful when multiple panes are running different things.
+
+### How to use per-pane search (must be in copy mode)
+
+1. Scroll up in the pane you want to search - border turns **orange** when in copy mode
+2. Press `Ctrl-s` to start the search
+3. Type your search term
+4. Press `Enter` to confirm
 
 ### Navigate results
 
 * Next match: `n`
 * Previous match: `Shift + n`
 
-Press `q` to exit search mode.
+Press `Esc` to exit and return to the live terminal.
 
 ---
 
@@ -313,17 +322,20 @@ You usually only need one session, but sessions are great for context switching.
 tmux new -s activations
 ```
 
-### List sessions
-
-```
-Ctrl-a s
-```
-
 ### Switch sessions
 
 ```
-tmux attach -t workspace
+tmux attach -t troubleshooting
 ```
+
+You can also cycle through sessions without leaving tmux:
+
+```
+Ctrl-a )    Next session
+Ctrl-a (    Previous session
+```
+
+> Not commonly needed if you're working in a single session — but handy when you have a few running.
 
 
 
@@ -385,6 +397,8 @@ If you want to explore tmux on your own:
 * **tmux cheat sheet** — [tmuxcheatsheet.com](https://tmuxcheatsheet.com)
 * **Man page** — run `man tmux` in your terminal for the full reference
 
+> **Note:** Most online tmux guides use `Ctrl + b` as the prefix — that's the default out of the box. Our config remaps it to `Ctrl + a` (easier to reach). If you're following an external tutorial, mentally swap any `Ctrl-b` you see for `Ctrl-a`.
+
 ---
 
 ## Final note
@@ -397,4 +411,4 @@ This tmux setup is designed for:
 
 If you use it consistently, it becomes muscle memory fast and removes a ton of terminal friction.
 
-If something feels awkward or confusing, it probably means we should simplify it further — not add more shortcuts.
+If something feels awkward or confusing, we can change it. All of this is customizable.
