@@ -27,7 +27,7 @@ We organize work like this:
 
 * **One tmux session per job or context**
 
-  * Example: `workspace`, `personal`, etc
+  * Example: `workspace`, `backup`, etc
 * **One window (tab) per task/site**
 
   * Example: `THEA3`, `Lumina`, `Portico`
@@ -310,7 +310,7 @@ You usually only need one session, but sessions are great for context switching.
 ### Create a named session
 
 ```
-tmux new -s corpo
+tmux new -s activations
 ```
 
 ### List sessions
