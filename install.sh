@@ -139,12 +139,12 @@ install_zsh() {
 
 install_tmux() {
   echo "Installing tmux config..."
-  link_file "$DOTFILES_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
+  link_file "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.tmux.conf"
 }
 
 install_vim() {
   echo "Installing vim config..."
-  link_file "$DOTFILES_DIR/vim/.vimrc" "$HOME/.vimrc"
+  link_file "$DOTFILES_DIR/vim/vimrc" "$HOME/.vimrc"
 }
 
 #######################################
