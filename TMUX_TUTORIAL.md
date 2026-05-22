@@ -211,6 +211,19 @@ You can:
 * Resize panes with the mouse
 * Scroll using two‑finger trackpad
 
+### Entering and exiting copy mode
+
+**Enter copy mode:**
+
+* Two‑finger scroll up on the trackpad (automatic)
+* Or press `Ctrl-a [` to enter manually
+
+The pane border turns **orange** when you're in copy mode.
+
+**Exit copy mode:**
+
+* Press `q` to return to the live terminal
+
 ### Scrolling
 
 * Two‑finger scroll enters scrollback mode
@@ -232,7 +245,7 @@ Important behavior:
 
 * Copying **does not jump you back to the bottom**
 * You stay where you were scrolling
-* Press `Esc` to exit copy mode and return to the live terminal
+* Press `q` to exit copy mode and return to the live terminal
 
 ### How to tell you're in copy mode
 
@@ -241,7 +254,7 @@ The active pane border changes color:
 * **Purple** → normal mode (live terminal)
 * **Orange** → copy mode (scrolling or selecting)
 
-This makes it obvious when you're no longer seeing live output. Press `Esc` to return.
+This makes it obvious when you're no longer seeing live output. Press `q` to return.
 
 ---
 
@@ -255,15 +268,15 @@ Search is extremely useful for logs and long commands.
 
 Searches all visible content across every pane in the current window. Good for a quick look at what's on screen right now.
 
-**`Ctrl-s` in copy mode (orange border) — per-pane search**
+**`/` or `?` in copy mode (orange border) — per-pane search**
 
 Searches through the full scrollback buffer (up to 200k lines). Much more powerful for digging through log output. Only searches the pane you're currently in — useful when multiple panes are running different things.
 
 ### How to use per-pane search (must be in copy mode)
 
 1. Scroll up in the pane you want to search - border turns **orange** when in copy mode
-2. Press `Ctrl-s` to start the search
-3. Type your search term
+2. Press `/` to search forward, or `?` to search backward
+3. Type your search term — results highlight live as you type
 4. Press `Enter` to confirm
 
 ### Navigate results
@@ -271,7 +284,7 @@ Searches through the full scrollback buffer (up to 200k lines). Much more powerf
 * Next match: `n`
 * Previous match: `Shift + n`
 
-Press `Esc` to exit and return to the live terminal.
+Press `q` to exit and return to the live terminal.
 
 ---
 
@@ -343,7 +356,6 @@ Ctrl-a (    Previous session
 
 This setup intentionally avoids:
 
-* Vim‑style keybindings
 * Complex pane navigation shortcuts
 * Broadcasting commands to all panes
 * Fancy status bar scripts
@@ -379,7 +391,10 @@ Ctrl-a |        Vertical split
 Ctrl-a -        Horizontal split
 Ctrl-a x        Close pane
 Ctrl-d          Close pane (shell exit)
-Ctrl-a s        Search output
+Ctrl-a [        Enter copy mode
+q               Exit copy mode
+/               Search forward (in copy mode)
+?               Search backward (in copy mode)
 n / Shift-n     Next / previous match
 Mouse drag      Copy text
 Ctrl-a d        Detach session
