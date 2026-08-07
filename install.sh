@@ -9,6 +9,7 @@ set -euo pipefail
 INSTALL_ZSH=false
 INSTALL_TMUX=false
 INSTALL_VIM=false
+INSTALL_NVIM=false
 INSTALL_ALL=false
 EC_MODE=false
 APPEND_MODE=false
@@ -27,6 +28,7 @@ Options:
   --zsh        Install zsh config
   --tmux       Install tmux config
   --vim        Install vim config
+  --nvim       Install neovim config
   --all        Install everything
   --ec         Use the EC shared zsh config (ec_zshrc) instead of the full personal zshrc
   --append     Append a source line to existing ~/.zshrc instead of symlinking over it (zsh only)
@@ -53,6 +55,7 @@ while [[ $# -gt 0 ]]; do
     --zsh) INSTALL_ZSH=true ;;
     --tmux) INSTALL_TMUX=true ;;
     --vim) INSTALL_VIM=true ;;
+    --nvim) INSTALL_NVIM=true ;;
     --all) INSTALL_ALL=true ;;
     --ec) EC_MODE=true ;;
     --append) APPEND_MODE=true ;;
@@ -69,6 +72,7 @@ if $INSTALL_ALL; then
   INSTALL_ZSH=true
   INSTALL_TMUX=true
   INSTALL_VIM=true
+  INSTALL_NVIM=true
 fi
 
 #######################################
@@ -147,6 +151,12 @@ install_vim() {
   link_file "$DOTFILES_DIR/vim/vimrc" "$HOME/.vimrc"
 }
 
+install_nvim() {
+  echo "Installing neovim config..."
+  mkdir -p "$HOME/.config"
+  link_file "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
+}
+
 #######################################
 # Execute Selected Installs
 #######################################
@@ -154,5 +164,6 @@ install_vim() {
 $INSTALL_ZSH && install_zsh
 $INSTALL_TMUX && install_tmux
 $INSTALL_VIM && install_vim
+$INSTALL_NVIM && install_nvim
 
 echo "Installation complete."
