@@ -1,1 +1,13 @@
 .DS_Store
+
+# Backups created by install.sh
+*.backup.*
+
+# Neovim generated / machine-local state (should never be committed).
+# The nvim/ dir is symlinked to ~/.config/nvim, so these can appear inside it.
+nvim/lazy/
+nvim/mason/
+nvim/undodir/
+nvim/.netrwhist
+*.swp
+*.swo
