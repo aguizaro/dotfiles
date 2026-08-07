@@ -13,7 +13,7 @@ return {
 		dap.set_log_level("DEBUG")
 		dapui.setup()
 
-		require("dap-python").setup("/Users/tonyguizar/.virtualenvs/debugpy/bin/python")
+		require("dap-python").setup(vim.fn.expand("~/.virtualenvs/debugpy/bin/python"))
 		dap.listeners.before.attach.dapui_config = function()
 			dapui.open()
 		end
@@ -23,10 +23,14 @@ return {
 		--dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
 		-- dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
 
+		-- Prefer a Mason-installed cpptools OpenDebugAD7, fall back to a manual install under ~/extension
+		local mason_opendebug = vim.fn.expand("~/.local/share/nvim/mason/bin/OpenDebugAD7")
+		local opendebug = vim.fn.executable(mason_opendebug) == 1 and mason_opendebug
+			or vim.fn.expand("~/extension/debugAdapters/bin/OpenDebugAD7")
 		dap.adapters.cppdbg = {
 			id = "cppdbg",
 			type = "executable",
-			command = "/Users/tonyguizar/extension/debugAdapters/bin/OpenDebugAD7",
+			command = opendebug,
 		}
 		vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, {})
 		vim.keymap.set("n", "<leader>dc", dap.continue, {})
