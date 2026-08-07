@@ -1,6 +1,6 @@
 # dotfiles
 
-Personal dotfiles for zsh, tmux, iterm2, and vim.
+Personal dotfiles for zsh, tmux, iterm2, vim, and neovim.
 
 ## Contents
 
@@ -8,6 +8,7 @@ Personal dotfiles for zsh, tmux, iterm2, and vim.
 - `zsh/ec_zshrc` — shared EC team zsh config (aliases, tmux pane titles)
 - `tmux/tmux.conf` — tmux config
 - `vim/vimrc` — vim config
+- `nvim/` — neovim config (lazy.nvim, LSP, treesitter, telescope, etc.)
 - `iterm2/` — iTerm2 preferences
 
 ## Structure
@@ -22,6 +23,9 @@ dotfiles/
 │   └── tmux.conf
 ├── vim/
 │   └── vimrc
+├── nvim/
+│   ├── init.lua
+│   └── lua/
 └── iterm2/
     ├── com.googlecode.iterm2.plist
     └── com.googlecode.iterm2.private.plist
@@ -55,6 +59,7 @@ cd ~/dotfiles
 | `--zsh` | Install zsh config |
 | `--tmux` | Install tmux config |
 | `--vim` | Install vim config |
+| `--nvim` | Install neovim config (symlinks `nvim/` → `~/.config/nvim`) |
 | `--all` | Install everything |
 | `--ec` | Use the shared EC zsh config instead of the full personal one |
 | `--append` | Append a `source` line to your existing `~/.zshrc` instead of symlinking over it (zsh only) |
@@ -65,7 +70,7 @@ cd ~/dotfiles
 ./install.sh --all
 ```
 
-Symlinks `zshrc` → `~/.zshrc`, `tmux.conf` → `~/.tmux.conf`, `vimrc` → `~/.vimrc`. Backs up any existing files before overwriting.
+Symlinks `zshrc` → `~/.zshrc`, `tmux.conf` → `~/.tmux.conf`, `vimrc` → `~/.vimrc`, `nvim/` → `~/.config/nvim`. Backs up any existing files before overwriting.
 
 ## Teammate / EC install
 
