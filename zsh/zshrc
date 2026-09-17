@@ -1,3 +1,8 @@
+# Option+Left/Right word-jump (iTerm2 sends double-escape sequences for these,
+# to stay unambiguous through tmux's escape-time handling)
+bindkey '\e\e[C' forward-word
+bindkey '\e\e[D' backward-word
+
 alias python='python3'
 alias pip='pip3'
 alias dotfiles='cd ~/Desktop/Projects/dotfiles'
