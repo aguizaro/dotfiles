@@ -1,3 +1,12 @@
+# Option+Left/Right word-jump (iTerm2 sends double-escape sequences for these,
+# to stay unambiguous through tmux's escape-time handling). Bind both the CSI
+# and SS3 forms since zle's application-cursor-keys mode (smkx) makes plain
+# arrows send ESC O C/D instead of ESC [ C/D.
+bindkey '\e\e[C' forward-word
+bindkey '\e\e[D' backward-word
+bindkey '\e\eOC' forward-word
+bindkey '\e\eOD' backward-word
+
 alias python='python3'
 alias pip='pip3'
 alias scp='scp -O' # legacy SCP protocol
