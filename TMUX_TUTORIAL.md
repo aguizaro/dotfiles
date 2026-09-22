@@ -390,11 +390,13 @@ Shift ← / →     Switch windows
 Ctrl-a |        Vertical split
 Ctrl-a -        Horizontal split
 Ctrl-a x        Close pane
+Ctrl-a &        Close window
 Ctrl-d          Close pane (shell exit)
 Ctrl-a [        Enter copy mode
 q               Exit copy mode
 /               Search forward (in copy mode)
 ?               Search backward (in copy mode)
+Ctrl-a s        Enter copy mode and start reverse search
 n / Shift-n     Next / previous match
 Mouse drag      Copy text
 Ctrl-a d        Detach session
